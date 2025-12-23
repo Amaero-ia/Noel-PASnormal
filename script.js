@@ -72,9 +72,8 @@ function checkName() {
 }
 
 function cellsScene(choice) {
-    // changeMusic('dungeon-music.mp3');  // Décommenter quand tu ajoutes le fichier
     document.getElementById('modal').classList.add('hidden');
-    document.getElementById('screen').style.backgroundImage = "url('castle.jpg')";  // Change en cells.jpg quand tu ajoutes l'image
+    document.getElementById('screen').style.backgroundImage = "url('castle.jpg')"; // Temporaire, on ajoutera cells.jpg plus tard
     let introText = choice === 'toque' ? "Tu toques... la porte s'ouvre brutalement et tu tombes dans les oubliettes. Classique." : "Plouf ! Douves glacées et puantes. Tu rampes, couvert de merde nostalgique, jusqu'aux cellules.";
     showModal(`
         ${introText}<br><br>
@@ -86,5 +85,5 @@ function cellsScene(choice) {
 }
 
 function nextScene() {
-    showModal("À suivre bientôt : Combat contre l'Edge Lord, labo, cape emo, crush toxique révélé...<br>Joyeux Noël PAS normal 2025 ! 🧛‍♂️🎄🩸<br><button onclick='location.reload()'>Rejouer</button>");
+    showModal("À suivre bientôt : Combat contre l'Edge Lord qui pue la Monster, labo avec potions wtf, cape emo stylée, journal intime crush toxique, Ganondorf charcuté par Link, cuisine avec chien en armure, et la Source du Mal cosmique !<br>Joyeux Noël PAS normal 2025, les gueux ! 🧛‍♂️🎄🩸<br><button onclick='location.reload()'>Rejouer</button>");
 }
