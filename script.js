@@ -1,10 +1,90 @@
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap');
+const validNames = ["comor subite", "aimba paix", "gauvain dumons", "ade madeleine", "paul m'ploie", "edmond deminui", "conrad ducloche"];
 
-body, html { margin:0; padding:0; height:100%; overflow:hidden; background:#000; }
-#screen { width:100%; height:100%; background-size:cover; background-position:center; cursor:pointer; position:absolute; }
-#modal { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); display:flex; align-items:center; justify-content:center; }
-#modal-content { max-width:90%; padding:40px; background:rgba(20,0,0,0.9); border:4px solid #800; border-radius:20px; color:#eee; font-family:'Cinzel', serif; font-size:24px; text-align:center; text-shadow:2px 2px 4px #000; }
-.hidden { display:none; }
-button { background:#800; color:#fff; border:3px solid #f00; padding:15px 30px; margin:20px; cursor:pointer; font-size:22px; border-radius:10px; transition:0.3s; }
-button:hover { background:#f00; box-shadow:0 0 20px #f00; }
-input { padding:15px; font-size:20px; margin:10px; border-radius:10px; border:2px solid #800; background:#111; color:#eee; }
+let playerName = '';
+let currentMusic = document.getElementById('bgMusic');
+
+function changeMusic(src) {
+    currentMusic.src = src;
+    currentMusic.load();
+    currentMusic.play();
+}
+
+function showModal(text, buttons = []) {
+    let html = `<p>${text}</p>`;
+    if (buttons.length > 0) {
+        html += buttons.map(b => `<button onclick="${b.action}">${b.text}</button>`).join('<br>');
+    }
+    document.getElementById('modal-content').innerHTML = html;
+    document.getElementById('modal').classList.remove('hidden');
+    document.getElementById('screen').style.cursor = 'default';
+    document.getElementById('screen').onclick = null;
+}
+
+// Démarrage : Lettre
+document.getElementById('screen').style.backgroundImage = "url('letter.jpg')";
+document.getElementById('screen').onclick = () => {
+    showModal(`
+        Cher Gueux de 2023,<br><br>
+        En cette nuit de Noël 2025, deux ans après votre évasion légendaire...<br>
+        Le Château de Satanae vous appelle une dernière fois. Des récompenses ? Des pièges ? De la nostalgie ?<br><br>
+        Venez, si vous osez revivre l'horreur festive.<br><br>
+        Signé,<br>
+        Dr. Amadeus 🧛‍♂️❄️🩸
+    `, [
+        {text: "1 : J'écoute l'appel du risque et me rends au château, empli de nostalgie", action: "castleScene()"},
+        {text: "2 : Je m'en balec, je chiffonne le papier et le jette", action: "badEnd()"}
+    ]);
+};
+
+function badEnd() {
+    showModal("Tu chiffonnes la lettre... et rates l'aventure. Joyeux Noël solitaire, gueux pathétique ! 🎄😭<br><button onclick='location.reload()'>Recommencer</button>");
+}
+
+function castleScene() {
+    document.getElementById('modal').classList.add('hidden');
+    document.getElementById('screen').style.backgroundImage = "url('castle.jpg')";
+    showModal(`
+        Le château se dresse, enneigé et menaçant sous la lune rouge.<br><br>
+        Entre ton nom de gueux d'Halloween 2023 pour que mes chauve-souris te reconnaissent :
+        <br><input type="text" id="nameInput" placeholder="Ex: Comor Subite">
+        <br><button onclick="checkName()">Valider mon destin</button>
+    `);
+}
+
+function checkName() {
+    let input = document.getElementById('nameInput').value.trim().toLowerCase();
+    if (input === "amadeus") {
+        showModal("#JyCroisMoyen<br>Tu n'es pas moi, imposteur ! Mes chauve-souris t'attaquent. 💀<br><button onclick='castleScene()'>Réessayer</button>");
+        return;
+    }
+    if (validNames.includes(input)) {
+        playerName = input.charAt(0).toUpperCase() + input.slice(1);
+        showModal(`
+            Ah, ${playerName}... La nostalgie est palpable. Mes yeux (les chauve-souris) te reconnaissent.<br><br>
+            Que fais-tu ?
+        `, [
+            {text: "1 : Je toque poliment à la grande porte", action: "cellsScene('toque')"},
+            {text: "2 : Je me jette dans les douves pleines de merde, empli de nostalgie", action: "cellsScene('douves')"}
+        ]);
+    } else {
+        showModal("Nom inconnu... Mes chauve-souris te snobent. Réessaie, gueux oublié.<br><button onclick='castleScene()'>Retour</button>");
+    }
+}
+
+function cellsScene(choice) {
+    // changeMusic('dungeon-music.mp3');  // Décommenter quand tu ajoutes le fichier
+    document.getElementById('modal').classList.add('hidden');
+    document.getElementById('screen').style.backgroundImage = "url('castle.jpg')";  // Change en cells.jpg quand tu ajoutes l'image
+    let introText = choice === 'toque' ? "Tu toques... la porte s'ouvre brutalement et tu tombes dans les oubliettes. Classique." : "Plouf ! Douves glacées et puantes. Tu rampes, couvert de merde nostalgique, jusqu'aux cellules.";
+    showModal(`
+        ${introText}<br><br>
+        Tu te réveilles à l'étage -6, enchaîné avec les autres gueux. Les torches crépitent, les chaînes grincent...<br>
+        L'aventure recommence vraiment maintenant, ${playerName}.
+        <br><br><button onclick="nextScene()">Continuer vers le -5 (Edge Lord incoming...)</button>
+        <br><button onclick='location.reload()'>Rejouer</button>
+    `);
+}
+
+function nextScene() {
+    showModal("À suivre bientôt : Combat contre l'Edge Lord, labo, cape emo, crush toxique révélé...<br>Joyeux Noël PAS normal 2025 ! 🧛‍♂️🎄🩸<br><button onclick='location.reload()'>Rejouer</button>");
+}
