@@ -1,5 +1,6 @@
 const validNames = ["comor subite", "aimba paix", "gauvain dumons", "ade madeleine", "paul m'ploie", "edmond deminui", "conrad ducloche"];
-
+console.log("Script chargé !");
+alert("Script chargé !");  // ← cette ligne fait pop une alerte
 let playerName = '';
 let currentMusic = document.getElementById('bgMusic');
 
@@ -88,4 +89,5 @@ function cellsScene(choice) {
 function nextScene() {
     showModal("À suivre bientôt : Combat contre l'Edge Lord qui pue la Monster, labo avec potions wtf, cape emo stylée, journal intime crush toxique, Ganondorf charcuté par Link, cuisine avec chien en armure, et la Source du Mal cosmique !<br>Joyeux Noël PAS normal 2025, les gueux ! 🧛‍♂️🎄🩸<br><button onclick='location.reload()'>Rejouer</button>");
 }
+
 
