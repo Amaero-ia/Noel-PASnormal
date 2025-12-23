@@ -21,8 +21,10 @@ function showModal(text, buttons = []) {
 }
 
 // Démarrage : Lettre
-document.getElementById('screen').style.backgroundImage = "url('letter.jpg')";
 document.getElementById('screen').onclick = () => {
+    // Démarre la musique au premier clic
+    let music = document.getElementById('bgMusic');
+    music.play().catch(() => console.log("Musique bloquée, mais c'est ok"));
     showModal(`
         Cher Gueux de 2023,<br><br>
         En cette nuit de Noël 2025, deux ans après votre évasion légendaire...<br>
@@ -35,7 +37,6 @@ document.getElementById('screen').onclick = () => {
         {text: "2 : Je m'en balec, je chiffonne le papier et le jette", action: "badEnd()"}
     ]);
 };
-
 function badEnd() {
     showModal("Tu chiffonnes la lettre... et rates l'aventure. Joyeux Noël solitaire, gueux pathétique ! 🎄😭<br><button onclick='location.reload()'>Recommencer</button>");
 }
@@ -87,3 +88,4 @@ function cellsScene(choice) {
 function nextScene() {
     showModal("À suivre bientôt : Combat contre l'Edge Lord qui pue la Monster, labo avec potions wtf, cape emo stylée, journal intime crush toxique, Ganondorf charcuté par Link, cuisine avec chien en armure, et la Source du Mal cosmique !<br>Joyeux Noël PAS normal 2025, les gueux ! 🧛‍♂️🎄🩸<br><button onclick='location.reload()'>Rejouer</button>");
 }
+
