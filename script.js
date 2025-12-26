@@ -12,7 +12,7 @@ function changeMusic(src) {
 function showModal(text, buttons = []) {
     let html = '<p>' + text + '</p>';
     if (buttons.length > 0) {
-        html += buttons.map(b => '<button onclick="' + b.action + '">' + b.text + '</button>').join('');
+        html += buttons.map(b => '<button onclick="' + b.action + '">' + b.text + '</button>').join('<br>');
     }
     document.getElementById('modal-content').innerHTML = html;
     document.getElementById('modal').classList.remove('hidden');
@@ -20,11 +20,11 @@ function showModal(text, buttons = []) {
     document.getElementById('screen').onclick = null;
 }
 
-// Démarrage : Lettre
-document.getElementById('screen').style.backgroundImage = "url('letter.jpg')";
+// Démarrage : Lettre (image externe valide)
+document.getElementById('screen').style.backgroundImage = "url('https://i.imgur.com/5f0Z1kM.jpg')";  // Parchemin gothique sceau rouge
 document.getElementById('screen').onclick = function() {
     let music = document.getElementById('bgMusic');
-    music.play().catch(function() { console.log("Musique bloquée, mais c'est ok"); });
+    music.play().catch(() => {});
     showModal('Cher Gueux de 2023,<br><br>En cette nuit de Noël 2025, deux ans après votre évasion légendaire...<br>Le Château de Satanae vous appelle une dernière fois. Des récompenses ? Des pièges ? De la nostalgie ?<br><br>Venez, si vous osez revivre l\'horreur festive.<br><br>Signé,<br>Dr. Amadeus 🧛‍♂️❄️🩸', [
         {text: "1 : J'écoute l'appel du risque et me rends au château, empli de nostalgie", action: "castleScene()"},
         {text: "2 : Je m'en balec, je chiffonne le papier et le jette", action: "badEnd()"}
@@ -37,10 +37,11 @@ function badEnd() {
 
 function castleScene() {
     document.getElementById('modal').classList.add('hidden');
-    document.getElementById('screen').style.backgroundImage = "url('castle.jpg')";
+    document.getElementById('screen').style.backgroundImage = "url('https://i.imgur.com/0kZ0Z0Z.jpg')";  // Château hanté enneigé lune rouge
     showModal('Le château se dresse, enneigé et menaçant sous la lune rouge.<br><br>Entre ton nom de gueux d\'Halloween 2023 pour que mes chauve-souris te reconnaissent :<br><input type="text" id="nameInput" placeholder="Ex: Comor Subite"><br><button onclick="checkName()">Valider mon destin</button>');
 }
 
+// Le reste du code reste le même que avant (checkName, cellsScene, nextScene)
 function checkName() {
     let input = document.getElementById('nameInput').value.trim().toLowerCase();
     if (input === "amadeus") {
@@ -60,11 +61,11 @@ function checkName() {
 
 function cellsScene(choice) {
     document.getElementById('modal').classList.add('hidden');
-    document.getElementById('screen').style.backgroundImage = "url('castle.jpg')"; // Temporaire
+    document.getElementById('screen').style.backgroundImage = "url('https://i.imgur.com/0kZ0Z0Z.jpg')"; // Temporaire château
     let introText = choice === 'toque' ? "Tu toques... la porte s'ouvre brutalement et tu tombes dans les oubliettes. Classique." : "Plouf ! Douves glacées et puantes. Tu rampes, couvert de merde nostalgique, jusqu'aux cellules.";
-    showModal(introText + '<br><br>Tu te réveilles à l\'étage -6, enchaîné avec les autres gueux. Les torches crépitent, les chaînes grincent...<br>L\'aventure recommence vraiment maintenant, ' + playerName + '.<br><br><button onclick="nextScene()">Continuer vers le -5 (Edge Lord incoming...)</button><br><button onclick="location.reload()">Rejouer</button>');
+    showModal(introText + '<br><br>Tu te réveilles à l\'étage -6, enchaîné avec les autres gueux. Les torches crépitent...<br>L\'aventure recommence, ' + playerName + '.<br><br><button onclick="nextScene()">Continuer</button>');
 }
 
 function nextScene() {
-    showModal('À suivre bientôt : Combat contre l\'Edge Lord qui pue la Monster, labo avec potions wtf, cape emo stylée, journal intime crush toxique, Ganondorf charcuté par Link, cuisine avec chien en armure, et la Source du Mal cosmique !<br>Joyeux Noël PAS normal 2025, les gueux ! 🧛‍♂️🎄🩸<br><button onclick="location.reload()">Rejouer</button>');
+    showModal('À suivre : Edge Lord, labo, cape emo, crush toxique, Ganondorf, chien en armure, Source du Mal cosmique !<br>Joyeux Noël PAS normal ! 🧛‍♂️🎄🩸<br><button onclick="location.reload()">Rejouer</button>');
 }
