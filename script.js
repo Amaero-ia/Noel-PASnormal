@@ -14,8 +14,8 @@ window.onload = function() {
         document.getElementById('screen').onclick = null;
     }
 
-    // Démarrage : Lettre gothique sceau rouge chandelles
-    document.getElementById('screen').style.backgroundImage = "url('https://images.stockcake.com/public/1/5/4/1547a71b-398a-44c2-8392-b496bbb51b77_large/sealed-letter-exchange-stockcake.jpg')";
+    // Démarrage : Lettre sceau rouge chandelles
+    document.getElementById('screen').style.backgroundImage = "url('https://i.etsystatic.com/8469556/r/il/05c980/4302502438/il_fullxfull.4302502438_bqp3.jpg')";
     document.getElementById('screen').onclick = function() {
         let music = document.getElementById('bgMusic');
         music.play().catch(() => {});
@@ -31,7 +31,7 @@ window.onload = function() {
 
     function castleScene() {
         document.getElementById('modal').classList.add('hidden');
-        document.getElementById('screen').style.backgroundImage = "url('https://t4.ftcdn.net/jpg/13/12/41/41/360_F_1312414197_PM6IGNHM4GK8RD7R0BuzyN3iIV4F7iAe.jpg')";
+        document.getElementById('screen').style.backgroundImage = "url('https://i.etsystatic.com/8469556/r/il/a0eb6f/4349895441/il_fullxfull.4349895441_f8x0.jpg')";
         showModal('Le château se dresse, enneigé et menaçant sous la lune rouge.<br><br>Entre ton nom de gueux d\'Halloween 2023 pour que mes chauve-souris te reconnaissent :<br><input type="text" id="nameInput" placeholder="Ex: Comor Subite"><br><button onclick="checkName()">Valider mon destin</button>');
     }
 
@@ -54,7 +54,7 @@ window.onload = function() {
 
     function cellsScene(choice) {
         document.getElementById('modal').classList.add('hidden');
-        document.getElementById('screen').style.backgroundImage = "url('https://t4.ftcdn.net/jpg/13/12/41/41/360_F_1312414197_PM6IGNHM4GK8RD7R0BuzyN3iIV4F7iAe.jpg')";
+        document.getElementById('screen').style.backgroundImage = "url('https://i.etsystatic.com/8469556/r/il/a0eb6f/4349895441/il_fullxfull.4349895441_f8x0.jpg')";
         let introText = choice === 'toque' ? "Tu toques... la porte s\'ouvre brutalement et tu tombes dans les oubliettes. Classique." : "Plouf ! Douves glacées et puantes. Tu rampes, couvert de merde nostalgique, jusqu\'aux cellules.";
         showModal(introText + '<br><br>Tu te réveilles à l\'étage -6, enchaîné avec les autres gueux. Les torches crépitent, les chaînes grincent...<br>L\'aventure recommence vraiment maintenant, ' + playerName + '.<br><br><button onclick="nextScene()">Continuer vers le -5 (Edge Lord incoming...)</button><br><button onclick="location.reload()">Rejouer</button>');
     }
